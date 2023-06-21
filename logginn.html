@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="main.css">
+<style>
+#user, #pass{
+	width:30em; height: 3em;
+}
+
+h1{
+	font-size: 40px;
+}
+
+#innhold {
+	text-align: center;
+	padding-top: 200px;
+}
+
+#logginnknapp {
+	width: 8em; height: 3em;
+	font-size: 16px;
+	margin-right: 280px;
+	background-color: black;
+	color: white;
+}
+
+#username, #password{
+	width:30em; height: 3em;
+}
+
+#glemtpassord {
+	font-size: 14px;
+}
+</style>
+
+<title>Logg inn</title>
+</head>
+
+<body>
+<main>
+<article id="innhold">
+    <h1>Logg inn</h1>
+    <br>
+    <form name="f1" onsubmit="return validateAndSubmit(event);" method="POST">
+        <p>
+            <label for="user"></label>
+            <input type = "text" id ="user" name  = "username" placeholder="Brukernavn" />  
+        </p>
+        <p>
+            <label for="pass"></label>
+            <input type = "password" id ="pass" name  = "password" placeholder="Passord"/>  
+        </p>
+        <p>
+            <input type =  "submit" id = "logginnknapp" value = "Login" />  
+        </p>
+    </form>  
+    <div id="message" style="color: red;"></div>
+    <div id="glemtpassord">
+        <p><a href="glemtpassord.html">Glemt passord?</a></a>
+        </p>
+    </div>
+</article> 
+<script>
+function validateAndSubmit(event) {
+    event.preventDefault();
+
+    var id = document.f1.user.value;
+    var ps = document.f1.pass.value;
+
+    if (id.length == "" || ps.length == "") {
+        document.getElementById('message').innerText = "Username and Password fields can't be empty.";
+    } else {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", 'authentication.php', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function() {
+            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                if (this.responseText === "success") {
+                    window.location.href = 'Index.php';
+                } else {
+                    document.getElementById('message').innerText = "Incorrect username or password.";
+                }
+            }
+        }
+        xhr.send('username=' + id + '&password=' + ps);
+    }
+}
+</script>
+</main>
+</body>
+</html>

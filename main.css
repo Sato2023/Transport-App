@@ -1,0 +1,149 @@
+body{
+	background-color:#F2F2F2;
+}
+article	{
+	font-family:arial, sans-serif;
+	font-size:24px;
+}
+header{
+	font-family:roboto, sans-serif;
+	text-align:center;
+}
+
+/********** MENY START **********/
+.toggle,
+[id^=drop] {
+	display: none;
+}
+
+nav.menybar { 
+	margin:0;
+    left:0;
+	top:0;
+	padding: 0;
+	position: fixed;
+	width: 100%;
+}
+
+nav.menybar ul {
+	padding:0;
+	margin:0;
+	list-style: none;
+}
+	
+/* Styler menyvalgene */
+nav.menybar ul li {
+	margin: 0;
+	float: left;
+	background-color: #334d4d;
+    width:25%;
+}
+
+/* Styler linker/tekst */
+nav.menybar a {
+	display:block;
+    padding:26px;
+	color:#FEFEFE;
+    font-size:14px;
+	text-decoration:none;
+}
+
+/* Hover farge */
+nav.menybar a:hover { 
+	background-color: #527a7a; 
+}
+
+/* Gjemmer dropdowns by default */
+nav.menybar ul ul {
+	display: none;
+	position: static;
+}
+	
+/* Viser dropdowns ved hover når width er større enn 1095px */
+@media all and (min-width : 1095px) {
+	nav.menybar ul li:hover ul {
+		display:block;
+	}
+}
+
+/* Dropdown styling */
+nav.menybar ul ul li {
+	height:100%;
+	width:100%;
+}
+
+/* Responsive design (for mindre skjermer) */
+@media all and (max-width : 1094px) {
+
+	nav.menybar {
+		margin: 0;
+	}
+
+	/* Gjemmer navigasjonsbar by default */
+	.toggle + a,
+	.meny {
+		display: none;
+	}
+
+	/* Styler label */
+	.toggle {
+		display: block;
+		background-color: #334d4d;	
+        padding:26px;
+		color: #FEFEFE;
+        font-size:14px;
+		text-decoration:none;
+	}
+
+	.toggle:hover {
+		background-color: #527a7a;
+	}
+
+	/* Viser dropdown når man trykker på label */
+	[id^=drop]:checked + ul {
+		display: block;
+	}
+
+	/* Setter 100% width på menyvalgene */
+	nav.menybar ul li {
+		display: block;
+		width: 100%;
+		}
+  
+	/* Styler dropdown-valgene */
+	nav.menybar ul ul a {
+		background-color: #09141d; 
+	}
+		
+	/* Setter 100% width på dropdown-valgene */
+	nav.menybar ul ul li {
+		display: block;
+		width: 100%;
+	}
+
+	#adminValg, #profilValg {
+		display:none;
+	}
+
+}
+/********** MENY SLUTT **********/
+
+
+/**Søke Bar Start*/
+.søke_bar{
+	text-align: auto;
+	margin-bottom: 40px;
+}
+
+.bar{
+	width:60%;
+	height: 23px;
+}
+
+.bar_button{
+	height: 28px;
+	margin-left: 1px;
+}
+
+/**SØke bar slutt**/
+

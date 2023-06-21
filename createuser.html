@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create New User</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      width: 300px;
+      padding: 16px;
+      background-color: white;
+      margin: 0 auto;
+      margin-top: 100px;
+      border: 1px solid black;
+      border-radius: 4px;
+    }
+
+    input[type=text], input[type=password], input[type=number] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <form action="createuser.php" method="post">
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" required>
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+
+    <label for="firstname"><b>First Name</b></label>
+    <input type="text" placeholder="Enter First Name" name="firstname" required>
+
+    <label for="lastname"><b>Last Name</b></label>
+    <input type="text" placeholder="Enter Last Name" name="lastname" required>
+
+    <label for="security"><b>Security (0 or 1)</b></label>
+    <input type="number" placeholder="Enter Security Level" name="security" required min="0" max="1">
+
+    <button type="submit">Create User</button>
+  </form>
+</div>
+
+</body>
+</html>

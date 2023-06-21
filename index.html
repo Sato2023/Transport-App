@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="main.css">
+<style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      text-align: center;
+      width: 600px;
+      padding-top: 200px;
+      background-color: white;
+      margin: 0 auto;
+      border: 1px solid black;
+      border-radius: 4px;
+    }
+
+    input[type=text], input[type=password], input[type=number] {
+      width: 30em;
+      height: 3em;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 8em;
+      height: 3em;
+      font-size: 16px;
+      margin-top: 8px;
+      background-color: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+  </style>
+
+<title>Logg inn</title>
+</head>
+
+<body>
+<main>
+<article id="innhold">
+    <h1>Logg inn</h1>
+    <br>
+    <form name="f1" onsubmit="return validateAndSubmit(event);" method="POST">
+        <p>
+            <label for="user"></label>
+            <input type = "text" id ="user" name  = "username" placeholder="Brukernavn" />  
+        </p>
+        <p>
+            <label for="pass"></label>
+            <input type = "password" id ="pass" name  = "password" placeholder="Passord"/>  
+        </p>
+        <p>
+            <input type =  "submit" id = "logginnknapp" value = "Login" />  
+        </p>
+    </form>  
+    <div id="message" style="color: red;"></div>
+    <div id="glemtpassord">
+        <p>Glemt passord? Kontakt administrasjonen.</a>
+        </p>
+    </div>
+</article> 
+<script>
+function validateAndSubmit(event) {
+    event.preventDefault();
+
+    var id = document.f1.user.value;
+    var ps = document.f1.pass.value;
+
+    if (id.length == "" || ps.length == "") {
+        document.getElementById('message').innerText = "Username and Password fields can't be empty.";
+    } else {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", 'authentication.php', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function() {
+            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                if (this.responseText === "success") {
+                    window.location.href = 'bruker.php';
+                } else {
+                    document.getElementById('message').innerText = "Incorrect username or password.";
+                }
+            }
+        }
+        xhr.send('username=' + id + '&password=' + ps);
+    }
+}
+</script>
+</main>
+</body>
+</html>
